@@ -1,14 +1,18 @@
 from functools import lru_cache
 
 
+@lru_cache(maxsize=50)
+def climb_stairs(n: int) -> int:
+    if n <= 3:
+        return n
+    else:
+        return climb_stairs(n - 1) + climb_stairs(n - 2)
+
+
 class Solution:
 
-    @lru_cache(maxsize=50)
     def climbStairs(self, n: int) -> int:
-        if n <= 3:
-            return n
-        else:
-            return self.climbStairs(n - 1) + self.climbStairs(n - 2)
+        return climb_stairs(n)
 
 
 if __name__ == "__main__":
